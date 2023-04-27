@@ -45,7 +45,7 @@ wallpapers_field.place(x=320, y=50)
 Label(win, text="Please provide your Documents folder path: ").place(x=5, y=90)
 documents_field = Entry(win, width=40)
 documents_field.place(x=320, y=90)
-ttk.Button(win, text="Generate", command=generate_script).pack()
+ttk.Button(win, text="Generate", command=generate_script).place(x=340, y=120)
 
 # Start main loop
 win.mainloop()
