@@ -14,10 +14,10 @@ music=/home/$USER/{{ music_dir }}/
 sort_files () {
 
     # Move files to the designated folders by filetype
-    find $downloads -regex '.*\.\(jpe?g\|jpg\|png\|tiff\|gif\|)' | xargs -I '{}' mv {} $pictures
+    find $downloads -regex '.*\.\(jpe?g\|jpg\|png\|tiff\|gif\)' | xargs -I '{}' mv {} $pictures
     find $downloads -regex '.*\.\(mp4\|mkv\)' | xargs -I '{}' mv {} $videos
     find $downloads -regex '.*\.\(mp3\|flac\)' | xargs -I '{}' mv {} $music
-    find $downloads -regex '.*\.\(pdf\|txt\|doc\|docx\|odt\|ppt\|pptx\|xls\|xlsx\|)' | xargs -I '{}' mv {} $documents
+    find $downloads -regex '.*\.\(pdf\|txt\|doc\|docx\|odt\|ppt\|pptx\|xls\|xlsx\)' | xargs -I '{}' mv {} $documents
 }
 
 trap "echo Exited; exit;" SIGINT SIGTERM

@@ -25,7 +25,7 @@ def generate_script():
         pictures_dir=pictures_dir,
         documents_dir=documents_dir,
         videos_dir=videos_dir,
-        pictures_dir=pictures_dir
+        music_dir=music_dir
     )
     with open(filename, mode="w", encoding="utf-8") as writer:
         writer.write(content)
@@ -50,12 +50,12 @@ Label(win, text="Please provide your Documents folder path: ").place(x=5, y=90)
 documents_field = Entry(win, width=40)
 documents_field.place(x=320, y=90)
 Label(win, text="Please provide your Videos folder path: ").place(x=5, y=130)
-documents_field = Entry(win, width=40)
-documents_field.place(x=320, y=140)
+videos_field = Entry(win, width=40)
+videos_field.place(x=320, y=130)
 Label(win, text="Please provide your Music folder path: ").place(x=5, y=170)
-documents_field = Entry(win, width=40)
-documents_field.place(x=320, y=170)
-ttk.Button(win, text="Generate", command=generate_script).place(x=340, y=200)
+music_field = Entry(win, width=40)
+music_field.place(x=320, y=170)
+ttk.Button(win, text="Generate", command=generate_script).place(x=340, y=210)
 
 # Start main loop
 win.mainloop()
