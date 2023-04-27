@@ -18,6 +18,15 @@ sort_files () {
     find $downloads -regex '.*\.\(mp4\|mkv\)' | xargs -I '{}' mv {} $videos
     find $downloads -regex '.*\.\(mp3\|flac\)' | xargs -I '{}' mv {} $music
     find $downloads -regex '.*\.\(pdf\|txt\|doc\|docx\|odt\|ppt\|pptx\|xls\|xlsx\)' | xargs -I '{}' mv {} $documents
+
+    # Optional: Move 1080p images to Wallpapers subfolder
+    for $file in $pictures
+    do
+        if ($(identify -format '%wx%h' $file) == 1920x1080)
+        then
+            mv $pictures/$file $pictures/Wallpapers/Dynamic/
+        fi
+    done
 }
 
 trap "echo Exited; exit;" SIGINT SIGTERM
