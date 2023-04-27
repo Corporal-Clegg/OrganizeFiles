@@ -1,17 +1,18 @@
+{# templates/organize_script.j2 #}
+
 #!/bin/bash
 
-## PATH definitions
 # Source directories
-downloads=/home/$USER/Downloads
+downloads=/home/$USER/{{ downloads_dir }}
 
 # Targeted destinations
-wallpapers_dynamic=/home/$USER/Pictures/Wallpapers/Dynamic/
+wallpapers_dynamic=/home/$USER/Pictures/{{ wallpapers_dynamic_dir }}/
 
 # Misc folders for manual sorting
-pictures_misc=/home/$USER/Pictures/
-documents_misc=/home/$USER/Documents/
-videos_misc=/home/$USER/Videos/
-music_misc=/home/$USER/Music/
+pictures_misc=/home/$USER/{{pictures_dir}}/
+documents_misc=/home/$USER/{{documents_dir}}/
+videos_misc=/home/$USER/{{ videos_dir }}/
+music_misc=/home/$USER/{{ music_dir }}/
 
 sort_files () {
     # Sort into targeted directories
