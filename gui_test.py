@@ -9,8 +9,10 @@ def generate_script():
 
     # Read in values
     downloads_dir = str(downloads_field.get())
-    wallpapers_dynamic_dir = str(wallpapers_field.get())
+    pictures_dir = str(wallpapers_field.get())
     documents_dir = str(documents_field.get())
+    videos_dir = str(documents_field.get())
+    music_dir = str(documents_field.get())
 
     # Define jinja template to use
     environment = Environment(loader=FileSystemLoader("templates/"))
@@ -20,8 +22,10 @@ def generate_script():
     filename = f"organize_files.sh"
     content = template.render(
         downloads_dir=downloads_dir,
-        wallpapers_dynamic_dir=wallpapers_dynamic_dir,
+        pictures_dir=pictures_dir,
         documents_dir=documents_dir,
+        videos_dir=videos_dir,
+        pictures_dir=pictures_dir
     )
     with open(filename, mode="w", encoding="utf-8") as writer:
         writer.write(content)
@@ -39,13 +43,19 @@ win.title("File Organizer")
 Label(win, text="Please provide your Downloads folder path: ").place(x=5, y=10)
 downloads_field = Entry(win, width=40)
 downloads_field.place(x=320, y=10)
-Label(win, text="Please provide your Wallpaper folder path: ").place(x=5, y=50)
+Label(win, text="Please provide your Pictures folder path: ").place(x=5, y=50)
 wallpapers_field = Entry(win, width=40)
 wallpapers_field.place(x=320, y=50)
 Label(win, text="Please provide your Documents folder path: ").place(x=5, y=90)
 documents_field = Entry(win, width=40)
 documents_field.place(x=320, y=90)
-ttk.Button(win, text="Generate", command=generate_script).place(x=340, y=120)
+Label(win, text="Please provide your Videos folder path: ").place(x=5, y=130)
+documents_field = Entry(win, width=40)
+documents_field.place(x=320, y=140)
+Label(win, text="Please provide your Music folder path: ").place(x=5, y=170)
+documents_field = Entry(win, width=40)
+documents_field.place(x=320, y=170)
+ttk.Button(win, text="Generate", command=generate_script).place(x=340, y=200)
 
 # Start main loop
 win.mainloop()

@@ -5,23 +5,19 @@
 # Source directories
 downloads=/home/$USER/{{ downloads_dir }}
 
-# Targeted destinations
-wallpapers_dynamic=/home/$USER/Pictures/{{ wallpapers_dynamic_dir }}/
-
-# Misc folders for manual sorting
-pictures_misc=/home/$USER/{{pictures_dir}}/
-documents_misc=/home/$USER/{{documents_dir}}/
-videos_misc=/home/$USER/{{ videos_dir }}/
-music_misc=/home/$USER/{{ music_dir }}/
+# Folder definitions
+pictures=/home/$USER/{{ pictures_dir }}/
+documents=/home/$USER/{{ documents_dir }}/
+videos=/home/$USER/{{ videos_dir }}/
+music=/home/$USER/{{ music_dir }}/
 
 sort_files () {
-    # Sort into targeted directories
-    find $downloads -regex '.*\.avif$' | xargs -I '{}' mv {} $wallpapers_dynamic
 
-    # Move non-targeted files to the parent folders
-    find $downloads -regex '.*\.\(jpe?g\|jpg\)' | xargs -I '{}' mv {} $pictures_misc
-    find $downloads -regex '.*\.\(mp4\|mkv\)' | xargs -I '{}' mv {} $videos_misc
-    find $downloads -regex '.*\.\(mp3\|flac\)' | xargs -I '{}' mv {} $music_misc
+    # Move files to the designated folders by filetype
+    find $downloads -regex '.*\.\(jpe?g\|jpg\|png\|tiff\|gif\|)' | xargs -I '{}' mv {} $pictures
+    find $downloads -regex '.*\.\(mp4\|mkv\)' | xargs -I '{}' mv {} $videos
+    find $downloads -regex '.*\.\(mp3\|flac\)' | xargs -I '{}' mv {} $music
+    find $downloads -regex '.*\.\(pdf\|txt\|doc\|docx\|odt\|ppt\|pptx\|xls\|xlsx\|)' | xargs -I '{}' mv {} $documents
 }
 
 trap "echo Exited; exit;" SIGINT SIGTERM
